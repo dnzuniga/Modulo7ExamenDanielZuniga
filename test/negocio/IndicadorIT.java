@@ -243,7 +243,7 @@ public class IndicadorIT {
 //    @Ignore
     public void testConecta() {
         System.out.println("conecta");
-        Indicador instance = new Indicador();
+        Indicador instance = new Indicador("http://mindicador.cl/api/","dolar");
         boolean expResult = true;
         System.out.println("Se espera resultado "+expResult);
         boolean result = instance.conecta();

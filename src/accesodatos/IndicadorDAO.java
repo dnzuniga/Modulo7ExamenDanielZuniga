@@ -50,19 +50,20 @@ public class IndicadorDAO {
      */
     public Indicador consumir() {
         try {
-            URL url = new URL(i.getUrl() + i.getCodigo());
+            URL url = new URL(i.getUrl());
             InputStream entrada = url.openStream();
             JsonReader reader = Json.createReader(entrada);
             JsonObject objeto = reader.readObject();
-            i.setNombre(String.valueOf(objeto.getJsonObject("indicador")
-                    .get("nombre")).substring(1, objeto.get("nombre").toString()
-                    .length() - 1));
-            i.setUnidadMedida(String.valueOf(objeto.getJsonObject("indicador")
-                    .get("unidad_medida")).substring(1, objeto.get("nombre")
+            i.setNombre(String.valueOf(objeto.getJsonObject(i.getCodigo())
+                    .get("nombre")).substring(1, objeto.getJsonObject(i.getCodigo())
+                    .get("nombre").toString().length() - 1));
+            i.setUnidadMedida(String.valueOf(objeto.getJsonObject(i.getCodigo())
+                    .get("unidad_medida")).substring(1, objeto
+                            .getJsonObject(i.getCodigo()).get("unidad_medida")
                     .toString().length() - 1));
-            i.setFecha(String.valueOf(objeto.getJsonObject("indicador")
+            i.setFecha(String.valueOf(objeto.getJsonObject(i.getCodigo())
                     .get("fecha")).substring(1, 11));
-            i.setValor(String.valueOf(objeto.getJsonObject("indicador")
+            i.setValor(String.valueOf(objeto.getJsonObject(i.getCodigo())
                     .get("valor")));
         } catch (MalformedURLException e) {
         } catch (IOException e) {
